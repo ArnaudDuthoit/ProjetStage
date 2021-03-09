@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil | {{ parent() }}{% endblock %}
+{% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
 
-
-
-<H1> HELLO, WORLD!</H1>
-
+    {% include 'home/welcome.html.twig' %}
+    {% include 'home/realisations.html.twig' %}
 
 {% endblock %}
+

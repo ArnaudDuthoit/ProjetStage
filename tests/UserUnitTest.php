@@ -15,6 +15,7 @@ class UserUnitTest extends TestCase
             ->setPrenom('prenom')
             ->setNom('nom')
             ->setPassword('password')
+            ->setTelephone('0601020304')
             ->setAPropos('a propos')
             ->setFacebook('facebook');
 
@@ -22,11 +23,13 @@ class UserUnitTest extends TestCase
         $this->assertTrue($user->getPrenom() === 'prenom');
         $this->assertTrue($user->getNom() === 'nom');
         $this->assertTrue($user->getPassword() === 'password');
+        $this->assertTrue($user->getTelephone() === '0601020304');
         $this->assertTrue($user->getAPropos() === 'a propos');
         $this->assertTrue($user->getFacebook() === 'facebook');
     }
 
-    public function testIsFalse(){
+    public function testIsFalse()
+    {
 
         $user = new User();
 
@@ -34,6 +37,7 @@ class UserUnitTest extends TestCase
             ->setPrenom('prenom')
             ->setNom('nom')
             ->setPassword('password')
+            ->setTelephone('0601020304')
             ->setAPropos('a propos')
             ->setFacebook('facebook');
 
@@ -41,11 +45,13 @@ class UserUnitTest extends TestCase
         $this->assertFalse($user->getPrenom() === 'false');
         $this->assertFalse($user->getNom() === 'false');
         $this->assertFalse($user->getPassword() === 'false');
+        $this->assertFalse($user->getTelephone() === 'false');
         $this->assertFalse($user->getAPropos() === 'false');
         $this->assertFalse($user->getFacebook() === 'false');
     }
 
-    public function testIsEmpty(){
+    public function testIsEmpty()
+    {
 
         $user = new User();
 
@@ -53,6 +59,7 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getPrenom());
         $this->assertEmpty($user->getNom());
         $this->assertEmpty($user->getPassword());
+        $this->assertEmpty($user->getTelephone());
         $this->assertEmpty($user->getAPropos());
         $this->assertEmpty($user->getFacebook());
     }
