@@ -11,16 +11,18 @@
 
             {% for realisation in realisations %}
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                    <a href="{{ path('realisation.show', {'id': realisation.id, "slug": realisation.slug}) }}">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>{{ realisation.nom }}</h4>
+                                <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
+                                <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <h4>{{ realisation.nom }}</h4>
-                            <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
-                            <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>

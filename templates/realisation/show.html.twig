@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ realisation.nom }} | Deco Pierres {% endblock %}
+
+{% block body %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li>{{ realisation.nom }} </li>
+            </ol>
+            <h2>Details de <b>{{ realisation.nom }}</b> </h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper-container">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <img src="{{ realisation.file }}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>Informations sur la réalisation</h3>
+                        <ul>
+                            <li><strong>Categorie</strong>: {% for categorie in realisation.categorie %}{{ categorie.nom }}{% endfor %}</li>
+                            <li><strong>Date de réalisation</strong>: {{ realisation.dateRealisation|date('d/m/Y') }} </li>
+                            <li><strong>Realisation URL</strong>: <a href="{{realisation.slug}}">{{realisation.slug}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>Description</h2>
+                        <p>
+                            {{ realisation.description }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Details Section -->
+</main>
+
+{% endblock %}
