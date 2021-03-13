@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RealisationController!{% endblock %}
+
+{% block body %}
+    <section id="team" class="team mt-4">
+
+        <div class="container">
+
+            <header class="section-header">
+                <p>Mes réalisations</p>
+                <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, animi aperiam consequatur cumque
+                    debitis dolor eum harum id inventore minus, nam odio provident quam reiciendis repellat sed sequi
+                    temporibus!</h2>
+            </header>
+
+            <div class="row gy-4">
+                {% for realisation in realisations %}
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>{{ realisation.nom }}</h4>
+                                <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
+                                <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="d-flex justify-content-center">
+        {% do realisations.setPageRange(2) %}
+        {{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
+    </div>
+{% endblock %}

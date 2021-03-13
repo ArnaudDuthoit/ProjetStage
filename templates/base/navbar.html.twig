@@ -2,23 +2,22 @@
 <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="#" class="logo d-flex align-items-center">
+        <a href="{{ path('home') }}" class="logo d-flex align-items-center">
             <img src="/img/logo.png" alt="">
             <span>Deco Pierres</span>
         </a>
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="#">Accueil</a></li>
-                <li><a class="nav-link scrollto" href="#">A propos</a></li>
-
-                <li class="dropdown"><a href="#"><span>Réalisations</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a class="nav-link scrollto" href="{{ path('home') }}">Accueil</a></li>
+                <li class="dropdown"><a href="{{ path('realisations') }}"><span>Réalisations</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="#">Intérieur</a></li>
                         <li><a href="#">Exterieur</a></li>
                         <li><a href="#">Autre</a></li>
                     </ul>
                 </li>
+                <li><a class="nav-link scrollto" href="#">A propos</a></li>
                 <li><a class="getstarted scrollto" href="#">Me contacter</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
