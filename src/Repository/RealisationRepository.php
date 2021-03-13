@@ -19,22 +19,18 @@ class RealisationRepository extends ServiceEntityRepository
         parent::__construct($registry, Realisation::class);
     }
 
-    // /**
-    //  * @return Realisation[] Returns an array of Realisation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Realisation[] Returns an array of Peinture objects
+     */
+    public function lastThree(): array
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Realisation

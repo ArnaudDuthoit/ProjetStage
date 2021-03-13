@@ -4,49 +4,25 @@
 
         <header class="section-header">
             <h2>Dernières réalisations</h2>
-            <p>Retrouvez mes dernière réalisations</p>
+            <p>Retrouvez mes dernières réalisations</p>
         </header>
 
         <div class="row gy-4">
 
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="https://picsum.photos/500" class="img-fluid" alt="">
-                    </div>
-                    <div class="member-info">
-                        <h4>Titre de la Réalisations</h4>
-                        <span>Date d'ajout</span>
-                        <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="https://picsum.photos/500" class="img-fluid" alt="">
-                    </div>
-                    <div class="member-info">
-                        <h4>Titre de la peinture</h4>
-                        <span>Date d'ajout</span>
-                        <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+            {% for realisation in realisations %}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="member">
+                        <div class="member-img">
+                            <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="member-info">
+                            <h4>{{ realisation.nom }}</h4>
+                            <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
+                            <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="https://picsum.photos/500" class="img-fluid" alt="">
-                    </div>
-                    <div class="member-info">
-                        <h4>Titre de la peinture</h4>
-                        <span>Date d'ajout</span>
-                        <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
