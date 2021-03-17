@@ -15,8 +15,18 @@
             </header>
 
             <div class="row gy-4">
+
+                {{ form_start(form) }}
+                {{ form_row(form.q) }}
+                <h4>Catégories</h4>
+                {{ form_row(form.categories) }}
+
+                <button class="submit btn btn-primary">Filtrer</button>
+
+                {{ form_end(form) }}
+
                 {% for realisation in realisations %}
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="col-lg-4 col-md-9 d-flex align-items-stretch">
                         <div class="member">
                             <div class="member-img">
                                 <img src="{{ realisation.file }}" class="img-fluid" alt="">
@@ -25,6 +35,9 @@
                                 <h4>{{ realisation.nom }}</h4>
                                 <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
                                 <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
+                                {% for c in realisation.categorie %}
+                                    <h5>#{{ c.nom }}</h5>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -33,7 +46,7 @@
         </div>
     </section>
     <div class="d-flex justify-content-center">
-        {% do realisations.setPageRange(2) %}
-        {{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
+         {% do realisations.setPageRange(2) %}
+         {{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
     </div>
 {% endblock %}

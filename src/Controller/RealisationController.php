@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Realisation;
+use App\Form\SearchFormType;
 use App\Repository\RealisationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -21,20 +23,28 @@ class RealisationController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function realisations(RealisationRepository $realisationRepository,
-                                 PaginatorInterface $paginator,
-                                 Request $request
-    ): Response
-    {
-        $data = $realisationRepository->findAll();
+    public function realisations(
+        RealisationRepository $realisationRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+
+        $data = new SearchData();
+        $form = $this->createForm(SearchFormType::class, $data);
+        $form->handleRequest($request);
+
+        $datarealisations = $realisationRepository->findSearch($data);
+
         $realisations = $paginator->paginate(
-            $data,
+            $datarealisations,
             $request->query->getInt('page', 1),
-            6
+            2
         );
 
         return $this->render('realisation/index.html.twig', [
             'realisations' => $realisations,
+            'form' => $form->createView(),
+
         ]);
     }
 
@@ -47,9 +57,7 @@ class RealisationController extends AbstractController
      * @return RedirectResponse|Response
      */
     public function show(Realisation $realisation, string $slug, EntityManagerInterface $manager)
-
     {
-
         if ($realisation->getSlug() !== $slug) {
             return $this->redirectToRoute('projet.show', [
                 'id' => $realisation->getId(),

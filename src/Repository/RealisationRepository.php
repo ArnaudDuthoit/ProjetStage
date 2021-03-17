@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Realisation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,6 +32,31 @@ class RealisationRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param SearchData $search
+     * @return Realisation[] Returns an array of Peinture objects
+     */
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+            ->join('p.categorie', 'c');
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('p.nom LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if (!empty($search->categories)) {
+            $query = $query
+                ->andWhere('c.id in (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+        return $query->getQuery()->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Realisation
