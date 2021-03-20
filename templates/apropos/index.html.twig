@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AproposController!{% endblock %}
+
+{% block body %}
+
+    <section id="hero" class="hero d-flex align-items-center">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <h1>{{ user.prenom }} {{ user.nom }}</h1>
+                    <h2>{{ user.apropos }}</h2>
+                </div>
+                <div class="col-lg-6 hero-img">
+                    <img src="https://entreprise.mma.fr/files/live/sites/mmapro/files/pages-de-contenu/Assurances-par-metier/600x400/artiste-peintre.jpg" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

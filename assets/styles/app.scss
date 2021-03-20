@@ -558,6 +558,41 @@ section {
     }
 }
 
+
+/*---------------
+# button
+----------------*/
+
+.button .btn-get-started {
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 40px;
+    border-radius: 4px;
+    transition: .5s;
+    color: #fff;
+    background: #4154f1;
+    box-shadow: 0 5px 30px rgb(65 84 241 / 40%);
+}
+
+.button .btn-get-started span {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.button .btn-get-started i {
+    margin-left: 5px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.button .btn-get-started:hover i {
+    transform: translateX(5px);
+}
+
+
+
 /*--------------------------------------------------------------
 # Réalisations
 --------------------------------------------------------------*/

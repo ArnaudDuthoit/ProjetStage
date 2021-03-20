@@ -33,7 +33,8 @@ class AppFixtures extends Fixture
             ->setNom($faker->lastName())
             ->setTelephone($faker->phoneNumber())
             ->setAPropos(($faker->text()))
-            ->setFacebook('facebook');
+            ->setFacebook('facebook')
+            ->setRoles(['ROLE_USER']);
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);
