@@ -12,9 +12,12 @@
                 <li><a class="nav-link scrollto" href="{{ path('home') }}">Accueil</a></li>
                 <li class="dropdown"><a href="{{ path('realisations') }}"><span>Réalisations</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Intérieur</a></li>
-                        <li><a href="#">Exterieur</a></li>
-                        <li><a href="#">Autre</a></li>
+                        {% for categorie in categorieNavbar() %}
+                            <li>
+                                <a href="{{ path('realisations',{'categories': categorie.id}) }}">{{ categorie.nom }}</a>
+                            </li>
+                        {% endfor %}
+
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="#">A propos</a></li>

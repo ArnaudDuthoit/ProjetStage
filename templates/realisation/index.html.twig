@@ -16,37 +16,44 @@
 
             <div class="row gy-4">
 
-                {{ form_start(form) }}
-                {{ form_row(form.q) }}
-                <h4>Catégories</h4>
-                {{ form_row(form.categories) }}
-
-                <button class="submit btn btn-primary">Filtrer</button>
-
-                {{ form_end(form) }}
-
-                {% for realisation in realisations %}
-                    <div class="col-lg-4 col-md-9 d-flex align-items-stretch">
-                        <div class="member">
-                            <div class="member-img">
-                                <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                <div class="col-lg-3 col-sm-3 col-xl-3">
+                    {{ form_start(form) }}
+                    {{ form_row(form.q) }}
+                    <hr>
+                    <h4 class="mt-4"><b>Catégories</b></h4>
+                    {{ form_row(form.categories) }}
+                    <hr>
+                    <button class="submit btn btn-primary">Filtrer</button>
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-lg-9 col-sm-9 col-xl-9">
+                    <div class="row">
+                        {% for realisation in realisations %}
+                            <div class="col-sm-6">
+                                <a href="{{ path('realisation.show', {'id': realisation.id, "slug": realisation.slug}) }}">
+                                    <div class="member">
+                                        <div class="member-img">
+                                            <img src="{{ realisation.file }}" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="member-info">
+                                            <h4>{{ realisation.nom }}</h4>
+                                            <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
+                                            <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
+                                            {% for c in realisation.categorie %}
+                                                <h5>#{{ c.nom }}</h5>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="member-info">
-                                <h4>{{ realisation.nom }}</h4>
-                                <span>Ajoutée le {{ realisation.createdAt|date('d/m/Y') }}</span>
-                                <p>{{ realisation.description|u.truncate(200, '...', false) }}</p>
-                                {% for c in realisation.categorie %}
-                                    <h5>#{{ c.nom }}</h5>
-                                {% endfor %}
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </section>
     <div class="d-flex justify-content-center">
-         {% do realisations.setPageRange(2) %}
-         {{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
+        {% do realisations.setPageRange(2) %}
+        {{ knp_pagination_render(realisations, 'base/pagination.html.twig') }}
     </div>
 {% endblock %}
